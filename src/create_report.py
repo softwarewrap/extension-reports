@@ -21,14 +21,19 @@ Dependencies:
     - shapely:    for centroid and geometry operations on ZIP polygons
 """
 
-import pandas as pd
-import geopandas as gpd
-import folium
-from branca.colormap import linear
-from shapely.geometry import Point
-from branca.colormap import LinearColormap
-import argparse
+# --- Standard library (CLI interface)
+import argparse                                          # Parses command-line args for input/output file paths
 
+# --- Data wrangling
+import pandas as pd                                      # Loads and filters request count CSVs
+import geopandas as gpd                                  # Joins request data with ZIP code geometries
+
+# --- Interactive map rendering
+import folium                                            # Builds the Leaflet.js map and visual layers
+from branca.colormap import linear, LinearColormap       # Generates gradient legends and scales
+
+# --- Geometry calculations
+from shapely.geometry import Point                       # Used for computing ZIP code centroids
 
 def create_report(csv_path: str, geojson_path: str, output_path: str) -> None:
     """
